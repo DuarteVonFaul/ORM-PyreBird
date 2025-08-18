@@ -38,7 +38,7 @@ class Select:
         
         ...
     
-    def join(self, table:TableModel,joins:list[BinaryExpression]):
+    def join(self, table:TableModel,*joins:list[BinaryExpression]):
         clause = JoinClause(table)
         for join in joins:
             if isinstance(join,BinaryExpression):

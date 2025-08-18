@@ -20,7 +20,7 @@ class JoinClause:
         return self
     
     def __repr__(self):
-        return f"<JoinClause: {self.join_type} {self.table_to_join.__tablename__} \nConditions: {self.on_conditions}>"
+        return f"<JoinClause: {self.join_type} {self.table_to_join.__tablename__} Conditions: {self.on_conditions}>"
     
 class AndClause:
     def __init__(self, clauses):
