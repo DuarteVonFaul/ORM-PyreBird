@@ -1,4 +1,4 @@
-from .expressions import BinaryExpression, JoinColumnExpression
+from .expressions import BinaryExpression, ColumnExpression
 from typing  import Optional
 
 class ColumnAttribute:
@@ -27,41 +27,53 @@ class ColumnAttribute:
 
     def __eq__(self, other):
         if isinstance(other, ColumnAttribute):
-            return BinaryExpression(left=JoinColumnExpression(self.table, self.column_name), 
+            return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
                                     Predicates='=', 
-                                    right=JoinColumnExpression(other.table, other.column_name))
-        return BinaryExpression(left=self.column_name, Predicates='=', right=other)
+                                    right=ColumnExpression(other.table, other.column_name))
+        return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
+                                Predicates='=',
+                                right=other)
 
     def __gt__(self, other):
         if isinstance(other, ColumnAttribute):
-            return BinaryExpression(left=JoinColumnExpression(self.table, self.column_name), 
+            return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
                                     Predicates='>', 
-                                    right=JoinColumnExpression(other.table, other.column_name))
-        return BinaryExpression(left=self.column_name, Predicates='>', right=other)
+                                    right=ColumnExpression(other.table, other.column_name))
+        return BinaryExpression(left=ColumnExpression(self.table, self.column_name),
+                                Predicates='>',
+                                right=other)
     def __ge__(self,other):
         if isinstance(other, ColumnAttribute):
-            return BinaryExpression(left=JoinColumnExpression(self.table, self.column_name), 
+            return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
                                     Predicates='>=', 
-                                    right=JoinColumnExpression(other.table, other.column_name))
-        return BinaryExpression(left=self.column_name, Predicates='>=', right=other)
+                                    right=ColumnExpression(other.table, other.column_name))
+        return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
+                                Predicates='>=', 
+                                right=other)
     
     def __lt__(self,other):
         if isinstance(other, ColumnAttribute):
-            return BinaryExpression(left=JoinColumnExpression(self.table, self.column_name), 
+            return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
                                     Predicates='<', 
-                                    right=JoinColumnExpression(other.table, other.column_name))
-        return BinaryExpression(left=self.column_name, Predicates='<', right=other)
+                                    right=ColumnExpression(other.table, other.column_name))
+        return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
+                                Predicates='<', 
+                                right=other)
     def __le__(self,other):
         if isinstance(other, ColumnAttribute):
-            return BinaryExpression(left=JoinColumnExpression(self.table, self.column_name), 
+            return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
                                     Predicates='<=', 
-                                    right=JoinColumnExpression(other.table, other.column_name))
-        return BinaryExpression(left=self.column_name, Predicates='<=', right=other)
+                                    right=ColumnExpression(other.table, other.column_name))
+        return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
+                                Predicates='<=', 
+                                right=other)
     
     def __ne__ (self,other):
         if isinstance(other, ColumnAttribute):
-            return BinaryExpression(left=JoinColumnExpression(self.table, self.column_name), 
+            return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
                                     Predicates='<>', 
-                                    right=JoinColumnExpression(other.table, other.column_name))
-        return BinaryExpression(left=self.column_name, Predicates='<>', right=other)
+                                    right=ColumnExpression(other.table, other.column_name))
+        return BinaryExpression(left=ColumnExpression(self.table, self.column_name), 
+                                Predicates='<>', 
+                                right=other)
     

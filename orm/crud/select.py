@@ -1,6 +1,6 @@
 from ..builder.sql import SelectObject
 from ..declarative.base import TableModel
-from ..builder.expressions import BinaryExpression,JoinColumnExpression
+from ..builder.expressions import BinaryExpression, ColumnExpression
 from ..builder.clauses import WhereClause, JoinClause,AndClause,OrClause 
 from ..builder.operators import OperatorEnum, JoinTypeEnum
 
@@ -42,12 +42,12 @@ class Select:
         clause = JoinClause(table)
         for join in joins:
             if isinstance(join,BinaryExpression):
-                if(isinstance(join.left,JoinColumnExpression) and isinstance(join.right,JoinColumnExpression)):
+                if(isinstance(join.left,ColumnExpression) and isinstance(join.right,ColumnExpression)):
                     clause.add_on_condition(join)
                 else:
-                  raise ValueError(f'Tipo {type(join.left)} não é valido, requerido o tipo {type(JoinColumnExpression)}')  
+                  raise ValueError(f'Tipo {type(join.left)} {type(join.right)} não é valido, requerido o tipo <class orm.builder.expressions.ColumnExpression> <class orm.builder.expressions.ColumnExpression> ')  
             else:
-                raise ValueError(f'Tipo {type(join)} não é valido, requerido o tipo {type(BinaryExpression)}')
+                raise ValueError(f'Tipo {type(join)} não é valido, requerido o tipo <class orm.builder.expressions.BinaryExpression> ')
         self.sql.joins.append(clause)
         
         return self

@@ -10,13 +10,14 @@ class BinaryExpression:
         return f"<BinaryExpression: {self.left} {self.predicates} {self.right}>"
 
 
-class JoinColumnExpression:
+class ColumnExpression:
     def __init__(self, table, column):
         self.table = table
         self.column = column
         pass
     def __repr__(self):
-        return f"<JoinColumnExpression: {self.table}.{self.column}>"
+        return f"<ColumnExpression: {self.table}.{self.column}>"
+    
     
 
 class RelationShipExpression:
