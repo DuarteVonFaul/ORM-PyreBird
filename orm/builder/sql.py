@@ -21,6 +21,7 @@ class InsertObject:
 class UpdateObject:
     def __init__(self, main_table):
         self.main_table = main_table
+        self.columns = []
         self.set = []
         self.where_clauses = []
         pass

@@ -24,8 +24,8 @@ class Select:
         return self
         ...
     
-    def filter(self, filters:list[BinaryExpression]):
-        for filter in filters:
+    def filter(self, *args):
+        for filter in args:
             if isinstance(filter,BinaryExpression):
                 self.sql.where_clauses.append(WhereClause(filter))
             else:
