@@ -14,7 +14,7 @@ class ColumnAttribute:
 
 
     def __repr__(self):
-        return f"<ColumnAttribute: Column Name:{self.column_name} Column Type:{self.column_type} Primary_key:{self.primary_key} Not Null:{self.not_null}>"
+        return f"<ColumnAttribute: Column_Name:{self.column_name} \nColumn_Type:{self.column_type} \nPrimary_key:{self.primary_key} \nNot_Null:{self.not_null}>"
         pass
 
 

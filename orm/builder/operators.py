@@ -6,7 +6,7 @@ class OperatorEnum(Enum):
 
 class PredicatesEnum(Enum):
     LIKE = 'LIKE'
-    BEWTEEN = 'BEWTEEN'
+    BETWEEN = 'BETWEEN'
     NOT = 'NOT'
     IN = 'IN'
     EXISTS = 'EXISTS'
@@ -18,9 +18,13 @@ class JoinTypeEnum(Enum):
     UNION = 'UNION'
 
 class RelationShipTypeEnum(Enum):
-    OneToOne: 'ONE_TO_ONE'
-    ManyToOne: 'MANY_TO_ONE'
-    ManyToMany: 'MANY_TO_MANY'
+    OneToOne = 'ONE_TO_ONE'
+    ManyToOne = 'MANY_TO_ONE'
+    ManyToMany = 'MANY_TO_MANY'
 
 
-    
+class OrderEnum(Enum):
+    ASC = 'ASC'
+    DESC = 'DESC'
+
+

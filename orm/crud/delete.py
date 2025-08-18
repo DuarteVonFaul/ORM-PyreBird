@@ -1,24 +1,15 @@
-from ..builder.sql import UpdateObject
+from ..builder.sql import DeleteObject
 from ..declarative.base import TableModel
 from ..builder.expressions import BinaryExpression
 from ..builder.clauses import WhereClause, AndClause, OrClause
 
 
-class Update:
+class Delete:
 
     def __init__(self, table:TableModel, conn):
-        self.sql = UpdateObject(table)
+        self.sql = DeleteObject(table)
         self.conn = conn
         pass
-    
-    def Set(self, **kargs):
-        for k, v in kargs.items():
-            self.sql.columns.append(k)
-            self.sql.set.append(v)    
-            ...
-        ...
-
-        return self
 
     def filter(self, *args):
         for filter in args:
@@ -32,9 +23,7 @@ class Update:
     
 
     def __repr__(self):
-        string  = f" <Update: TableName: {self.sql.main_table.__tablename__} \n"
-        string += f" columns: {self.sql.columns} \n"
-        string += f" set: {self.sql.set}\n"
+        string  = f" <Delete: TableName: {self.sql.main_table.__tablename__} \n"
         string += f" filter: {self.sql.where_clauses}\n"
         string += f">"
         return string

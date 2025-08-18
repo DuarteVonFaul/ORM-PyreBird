@@ -23,5 +23,5 @@ class TableDeclarativeMeta(type):
         return super().__new__(cls,name,bases,namespace)
     
     def __repr__(self):
-        return f"<TableModel: Name {self.__tablename__} Columns {self.__columns__} "
+        return f"<TableModel: Name {self.__tablename__} \n Columns {self.__columns__} "
     

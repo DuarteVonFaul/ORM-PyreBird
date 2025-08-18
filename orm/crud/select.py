@@ -1,7 +1,8 @@
 from ..builder.sql import SelectObject
 from ..declarative.base import TableModel
 from ..builder.expressions import BinaryExpression,JoinColumnExpression
-from ..builder.clauses import WhereClause, JoinClause 
+from ..builder.clauses import WhereClause, JoinClause,AndClause,OrClause 
+from ..builder.operators import OperatorEnum, JoinTypeEnum
 
 from typing import Optional
 
@@ -28,6 +29,8 @@ class Select:
         for filter in args:
             if isinstance(filter,BinaryExpression):
                 self.sql.where_clauses.append(WhereClause(filter))
+            elif isinstance(filter,(AndClause, OrClause)):
+                self.sql.where_clauses = self.sql.where_clauses + filter.clauses
             else:
                 raise ValueError(f'Tipo {type(filter)} não é valido, requerido o tipo {type(BinaryExpression)}')
         
@@ -68,3 +71,19 @@ class Select:
         
         pass
     ...
+
+def and_(*clauses):    
+    where_clauses = []
+    for clause in clauses:    
+        if not isinstance(clause,BinaryExpression):
+            raise ValueError(f'Tipo {type(clause)} não é valido, requerido o tipo {type(BinaryExpression)}')
+        where_clauses.append(WhereClause(clause, OperatorEnum.AND))
+    return AndClause(where_clauses)
+
+def or_(*clauses):
+    where_clauses = []
+    for clause in clauses:
+        if not isinstance(clause,BinaryExpression):
+            raise ValueError(f'Tipo {type(clause)} não é valido, requerido o tipo {type(BinaryExpression)}')
+        where_clauses.append(WhereClause(clause, OperatorEnum.OR))
+    return OrClause(where_clauses)
